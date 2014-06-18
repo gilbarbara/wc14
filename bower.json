@@ -1,6 +1,6 @@
 {
-  "name": "wc",
-  "version": "0.0.0",
+  "name": "wc14",
+  "version": "0.1.0",
   "dependencies": {
     "bootstrap-sass": "twbs/bootstrap-sass#~3",
     "jquery": "~2.1",
@@ -8,7 +8,11 @@
     "backbone": "~1",
     "modernizr": "~2",
     "d3": "~3.4",
-    "marionette": "~1.8"
+	"backbone.paginator": "~2",
+	"underscore.string": "~2.3",
+    "jquery.i18n": "https://github.com/wikimedia/jquery.i18n.git#~1.0.2",
+    "CLDRPluralRuleParser": "https://github.com/santhoshtr/CLDRPluralRuleParser.git",
+    "momentjs": "~2.6.0"
   },
   "devDependencies": {}
 }

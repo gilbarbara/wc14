@@ -1,8 +1,23 @@
 $icon-font-path: "/styles/fonts/";
 
-@import 'compass';
+@import 'compass/css3';
+
+$icon-font-path: "/styles/fonts/";
+$brand-primary: #FF0044 !default;
+$screen-sm: 640px !default;
+$grid-float-breakpoint: 769px;
 
 @import '_bootstrap';
+
+$light-bg: $navbar-default-bg;
+$border-color: $table-border-color;
+
+@mixin truncate($width: 100%) {
+	text-overflow: ellipsis;
+	overflow: hidden;
+	width: $width;
+	white-space: nowrap;
+}
 
 .browsehappy {
     margin: 0.2em 0;
@@ -11,18 +26,75 @@ $icon-font-path: "/styles/fonts/";
     padding: 0.2em 0;
 }
 
-.wc-goals {
-    
-    .item {
-        @include border-radius(20%);
-        border: 1px solid #DDD;
-        margin-bottom: 20px;
-        padding: 20px;
-        text-align: center;
-    }
-    
-    .goalsFor {
-        font-size: 46px;
-        display: inline-block;
-    }
+#header {
+	margin-bottom: $grid-gutter-width;
+
+	.logo {
+		background: url(/images/logo.png) no-repeat;
+		display: inline-block;
+		height: 48px;
+		width: 48px;
+	}
+}
+
+.team {
+	@include border-radius(10px);
+	border: 1px solid #DDD;
+	margin-bottom: 20px;
+	padding: ($grid-gutter-width / 2);
+	text-align: center;
+}
+
+.team-name {
+	min-height: 68px;
+}
+
+.goals span {
+	font-size: 46px;
+	display: inline-block;
+}
+
+.matches {
+	font-size: 18px;
+}
+
+.stats {
+	background-color: #FFF;
+	border-bottom: 1px solid $border-color;
+	border-top: 1px solid $border-color;
+	margin-top: ($grid-gutter-width / 2);
+	margin-bottom: 0;
+
+	.item {
+		color: $gray-light;
+		padding: ($grid-gutter-width / 3) ($grid-gutter-width / 6) ($grid-gutter-width / 6);
+		text-align: center;
+		text-decoration: none;
+
+		& + .item {
+			border-left: 1px solid $border-color;
+		}
+
+		&.active {
+			background-color: $navbar-default-bg;
+		}
+
+		div {
+			color: $text-color;
+			font-size: 16px;
+			font-family: SuperGroteskMedium;
+			line-height: 1;
+		}
+	}
+
+	h4 {
+		margin: 0;
+
+		a {
+			display: block;
+			line-height: 2;
+			text-align: left;
+			@include truncate(100%);
+		}
+	}
 }

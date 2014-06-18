@@ -1,4 +1,24 @@
-<div class="item">
+<div class="team">
     <img src="<%= logo %>">
-    <h4><div class="goalsFor"><%= goalsFor %></div> <%= name %></h4>
+    <h2 class="team-name"><%= name %></h2>
+
+	<div class="matches"><%= matchesPlayed %> <%= $.i18n('{{plural:$1|match|matches}}', matchesPlayed) %></div>
+	<div class="stats row">
+		<div class="col-xs-4 item">
+			<div class="list-count"><%= wins %></div>
+			<%= $.i18n('{{plural:$1|win|wins}}', wins) %>
+		</div>
+
+		<div class="col-xs-4 item">
+			<div class="post-count"><%= losses %></div>
+		<%= $.i18n('{{plural:$1|loss|losses}}', losses) %>
+		</div>
+
+		<div class="col-xs-4 item">
+			<div class="post-count"><%= draws %></div>
+			<%= $.i18n('{{plural:$1|draw|draws}}', draws) %>
+		</div>
+	</div>
+	<div class="goals"><span class="goalsFor"><%= goalsFor %></span><span> : </span><span class="goalsAgainst"><%= goalsAgainst %></span>
+		<div>Goals</div></div>
 </div>

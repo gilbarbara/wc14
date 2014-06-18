@@ -3,14 +3,14 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>WC</title>
+        <title>WC 14</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-        <!-- build:css(.tmp) /styles/main.css -->
+        <!-- build:css(.tmp) styles/main.css -->
         <link rel="stylesheet" href="styles/main.css">
         <!-- endbuild -->
-        <!-- build:js(bower_components) /scripts/vendor/modernizr.js -->
+        <!-- build:js(bower_components) scripts/vendor/modernizr.js -->
         <script src="/modernizr/modernizr.js"></script>
         <!-- endbuild -->
     </head>
@@ -19,11 +19,9 @@
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
 
+		<div id="header"></div>
 
-        <div id="content" class="container">
-            <h1>World Cup 2014</h1>
-        </div>
-
+		<div id="content" class="container"></div>
 
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
         <script>
@@ -35,14 +33,24 @@
             ga('create','UA-XXXXX-X');ga('send','pageview');
         </script>
 
-        <!-- build:js(bower_components) /scripts/vendor.js -->
-        <script src="jquery/dist/jquery.js"></script>
-        <script src="underscore/underscore.js"></script>
-        <script src="backbone/backbone.js"></script>
-        <script src="d3/d3.js"></script>
+        <!-- build:js(bower_components) scripts/vendor.js -->
+        <script src="/jquery/dist/jquery.js"></script>
+        <script src="/underscore/underscore.js"></script>
+        <script src="/backbone/backbone.js"></script>
+		<script src="/underscore.string/dist/underscore.string.min.js"></script>
         <!-- endbuild -->
 
-        <!-- build:js({bower_components,app}) /scripts/plugins.js -->
+        <!-- build:js({bower_components,app}) scripts/plugins.js -->
+		<script src="/backbone.paginator/lib/backbone.paginator.js"></script>
+
+		<script src="/jquery.i18n/src/jquery.i18n.js"></script>
+		<script src="/jquery.i18n/src/jquery.i18n.messagestore.js"></script>
+		<script src="/jquery.i18n/src/jquery.i18n.fallbacks.js"></script>
+		<script src="/jquery.i18n/src/jquery.i18n.parser.js"></script>
+		<script src="/jquery.i18n/src/jquery.i18n.emitter.js"></script>
+		<script src="/jquery.i18n/src/jquery.i18n.language.js"></script>
+		<script src="/CLDRPluralRuleParser/src/CLDRPluralRuleParser.js"></script>
+
         <script src="/bootstrap-sass/vendor/assets/javascripts/bootstrap/affix.js"></script>
         <script src="/bootstrap-sass/vendor/assets/javascripts/bootstrap/alert.js"></script>
         <script src="/bootstrap-sass/vendor/assets/javascripts/bootstrap/dropdown.js"></script>
@@ -54,14 +62,19 @@
         <script src="/bootstrap-sass/vendor/assets/javascripts/bootstrap/collapse.js"></script>
         <!-- endbuild -->
 
-        <!-- build:js({.tmp,app}) /scripts/main.js -->
-        <script src="scripts/main.js"></script>
-        <script src="scripts/templates.js"></script>
-        <script src="scripts/models/Goal.js"></script>
-        <script src="scripts/collections/Goals.js"></script>
-        <script src="scripts/views/Goals.js"></script>
-        <script src="scripts/views/Goal.js"></script>
-        <script src="scripts/routes/Router.js"></script>
+        <!-- build:js({.tmp,app}) scripts/app.js -->
+		<script src="/scripts/templates.js"></script>
+        <script src="/scripts/app.js"></script>
+
+		<script src="/scripts/routes/Router.js"></script>
+		<script src="/scripts/views/Header.js"></script>
+
+        <script src="/scripts/models/Goal.js"></script>
+        <script src="/scripts/collections/Goals.js"></script>
+        <script src="/scripts/views/Goals.js"></script>
+        <script src="/scripts/views/Goal.js"></script>
+
+		<script src="/scripts/boot.js"></script>
         <!-- endbuild -->
 </body>
 </html>
