@@ -24,7 +24,7 @@ module.exports = function (grunt) {
 	var yeomanConfig = {
 		app: 'app',
 		dist: 'dist',
-		url: 'http://beta.kollectiv.org'
+		url: 'http://localhost'
 	};
 
 	grunt.initConfig({
@@ -253,7 +253,8 @@ module.exports = function (grunt) {
 							'*.{ico,txt,png}',
 							'.htaccess',
 							'images/{,*/}*.{webp,gif,jpg,jpeg,png,svg}',
-							'styles/fonts/*.*'
+							'styles/fonts/*.*',
+							'api/*.*'
 						]
 					},
 					{

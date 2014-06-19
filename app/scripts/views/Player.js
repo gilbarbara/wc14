@@ -3,9 +3,9 @@ WC.Views = WC.Views || { };
 (function () {
 	'use strict';
 
-	WC.Views.Goal = Backbone.View.extend({
+	WC.Views.Player = Backbone.View.extend({
 
-		template: JST['app/scripts/templates/Goal.ejs'],
+		template: JST['app/scripts/templates/Player.ejs'],
 
 		tagName: 'div',
 

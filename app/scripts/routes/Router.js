@@ -5,13 +5,25 @@ WC.Routers = WC.Routers || { };
 
 	WC.Routers.Router = Backbone.Router.extend({
 		routes: {
-			'': 'index'
+			'': 'teams',
+			teams: 'teams',
+			matches: 'matches',
+			players: 'players'
 		},
 
-		index: function () {
-			WC.collections.goals = new WC.Collections.Goals();
-			WC.views.goals = new WC.Views.Goals({ collection: WC.collections.goals });
-			WC.collections.goals.fetch({ reset: true });
+		teams: function () {
+			WC.collections.teams = new WC.Collections.Teams(WC.data.teams);
+			WC.views.teams = new WC.Views.Teams({ collection: WC.collections.teams });
+		},
+
+		matches: function () {
+			WC.collections.matches = new WC.Collections.Matches(WC.data.matches);
+			WC.views.matches = new WC.Views.Matches({ collection: WC.collections.matches });
+		},
+
+		players: function () {
+			WC.collections.players = new WC.Collections.Players(WC.data.players);
+			WC.views.players = new WC.Views.Players({ collection: WC.collections.players });
 		}
 	});
 })();

@@ -1,10 +1,10 @@
 /*global beforeEach, describe, it, assert, expect  */
 'use strict';
 
-describe('Goal Model', function () {
+describe('Matches View', function () {
 
     beforeEach(function () {
-        this.GoalModel = new WC.Models.Goal();
+        this.MatchesView = new WC.Views.Matches();
     });
 
 });

@@ -1,9 +1,12 @@
-$icon-font-path: "/styles/fonts/";
-
 @import 'compass/css3';
 
 $icon-font-path: "/styles/fonts/";
-$brand-primary: #FF0044 !default;
+$brand-primary: #7FC31C !default;
+$brand-secondary: #B5DC10 !default;
+$brand-tertiary: #1C6ABA !default;
+
+$link-color: #798285;
+
 $screen-sm: 640px !default;
 $grid-float-breakpoint: 769px;
 
@@ -11,6 +14,8 @@ $grid-float-breakpoint: 769px;
 
 $light-bg: $navbar-default-bg;
 $border-color: $table-border-color;
+
+@import url(//fonts.googleapis.com/css?family=Arvo:400,700);
 
 @mixin truncate($width: 100%) {
 	text-overflow: ellipsis;
@@ -26,19 +31,48 @@ $border-color: $table-border-color;
     padding: 0.2em 0;
 }
 
-#header {
-	margin-bottom: $grid-gutter-width;
+body {
+	background-color: #CCC;
+	font-family: Arvo, serif;
+	padding-top: 70px;
+}
 
-	.logo {
-		background: url(/images/logo.png) no-repeat;
-		display: inline-block;
-		height: 48px;
-		width: 48px;
+img.svg {
+	display: block;
+	margin: 0 auto;
+	width: 400px;
+}
+
+.site-header {
+
+	.navbar {
+		border-bottom: none;
+		background-color: $brand-secondary;
+	}
+
+	.navbar-brand,
+	.navbar-brand:hover {
+		background-color: $brand-primary;
+		color: #FFF;
+		font-weight: 700;
+		min-width: 240px;
+	}
+
+	.navbar-nav {
+		> li.active {
+			> a,
+			> a:hover,
+			> a:active {
+				background-color: $brand-tertiary;
+				color: #FFF;
+			}
+		}
 	}
 }
 
 .team {
 	@include border-radius(10px);
+	background-color: #FFF;
 	border: 1px solid #DDD;
 	margin-bottom: 20px;
 	padding: ($grid-gutter-width / 2);
@@ -56,6 +90,19 @@ $border-color: $table-border-color;
 
 .matches {
 	font-size: 18px;
+}
+
+.match {
+	@include border-radius(10px);
+	background-color: #FFF;
+	border: 1px solid #DDD;
+	margin-bottom: 20px;
+	padding: ($grid-gutter-width / 2);
+	text-align: center;
+}
+
+.submenu {
+	margin-bottom: ($grid-gutter-width / 2);
 }
 
 .stats {

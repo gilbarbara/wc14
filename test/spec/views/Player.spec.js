@@ -1,10 +1,10 @@
 /*global beforeEach, describe, it, assert, expect  */
 'use strict';
 
-describe('Goals Collection', function () {
+describe('Player View', function () {
 
     beforeEach(function () {
-        this.GoalsCollection = new WC.Collections.Goals();
+        this.PlayerView = new WC.Views.Player();
     });
 
 });

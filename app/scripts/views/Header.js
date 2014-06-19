@@ -1,5 +1,3 @@
-/*global WC, Backbone, JST*/
-
 WC.Views = WC.Views || { };
 
 (function () {
@@ -9,9 +7,11 @@ WC.Views = WC.Views || { };
 
 		template: JST['app/scripts/templates/Header.ejs'],
 
-		el: '#header',
+		el: '.site-header',
 
-		events: { },
+		events: {
+			'click .navbar-nav a': 'navigate'
+		},
 
 		initialize: function () {
 			this.render();
@@ -21,8 +21,14 @@ WC.Views = WC.Views || { };
 			this.$el.html(this.template());
 
 			return this;
-		}
+		},
 
+		navigate: function (e) {
+			var $this = $(e.target);
+
+			$this.parent().addClass('active')
+				.siblings().removeClass('active');
+		}
 	});
 
 })();
