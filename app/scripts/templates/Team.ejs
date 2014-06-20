@@ -2,8 +2,16 @@
     <img src="<%= logo %>">
     <h2 class="team-name"><%= name %></h2>
 
-	<div class="matches"><%= matchesPlayed %> <%= $.i18n('{{plural:$1|match|matches}}', matchesPlayed) %></div>
-	<div class="stats row">
+	<div class="team-info row">
+		<div class="col-xs-6">
+			<div><%= group %></div>
+			<%= $.i18n('{{plural:$1|group|group}}', 1) %></div>
+		<div class="col-xs-6">
+			<div><%= groupRank %>º</div>
+			<%= $.i18n('ranking') %></div>
+	</div>
+
+	<div class="team-stats stats row">
 		<div class="col-xs-4 item">
 			<div class="list-count"><%= wins %></div>
 			<%= $.i18n('{{plural:$1|win|wins}}', wins) %>
@@ -19,6 +27,40 @@
 			<%= $.i18n('{{plural:$1|draw|draws}}', draws) %>
 		</div>
 	</div>
-	<div class="goals"><span class="goalsFor"><%= goalsFor %></span><span> : </span><span class="goalsAgainst"><%= goalsAgainst %></span>
-		<div>Goals</div></div>
+
+	<div class="team-goals row">
+		<h4 class="col-xs-12">Goals</h4>
+		<div class="col-xs-4">
+			<div><%= goalsDiff %></div>
+			DIFF
+		</div>
+
+		<div class="col-xs-4">
+			<div><%= goalsFor %></div>
+			FOR
+		</div>
+
+		<div class="col-xs-4">
+			<div><%= goalsAgainst %></div>
+			AGAINST
+		</div>
+	</div>
+
+	<div class="team-matches">
+		<h4>Matches</h4>
+
+		<% _.each(WC.getMatches(id), function (d) { %>
+			<div class="match-game row <%= d.status !== 'Pre-game' ? 'final' : '' %>">
+				<div class="col-xs-5" style="background-image:url('<%= WC.getFlag(d.homeTeamId) %>');"><%= WC.getTeam(d.homeTeamId).name %></div>
+				<div class="col-xs-2"><% if(d.status !== 'Pre-game') { %>
+					<div class="goals"><%= d.homeScore %> : <%= d.awayScore %></div>
+					<% } else { %>
+					<%= WC.formatDate(d.startTime) %>
+				<% } %></div>
+				<div class="col-xs-5" style="background-image:url('<%= WC.getFlag(d.awayTeamId) %>');"><%= WC.getTeam(d.awayTeamId).name %></div>
+			</div>
+			<% console.log(d);%>
+		<% }) %>
+
+	</div>
 </div>

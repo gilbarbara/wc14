@@ -307,6 +307,13 @@ module.exports = function (grunt) {
 					]
 				}
 			}
+		},
+		shell: {
+			rsync: {
+				command: function () {
+					return 'rsync dist/* -rvp --progress -a --delete -e "ssh -q -t" kollect@kollectiv.org:/home/kollect/public_html/wc14';
+				}
+			}
 		}
 	});
 
@@ -398,6 +405,8 @@ module.exports = function (grunt) {
 		'rev',
 		'usemin'
 	]);
+
+	grunt.registerTask('deploy', ['shell:rsync']);
 
 	grunt.registerTask('default', [
 		'jshint',

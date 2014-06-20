@@ -10,6 +10,8 @@ $link-color: #798285;
 $screen-sm: 640px !default;
 $grid-float-breakpoint: 769px;
 
+$headings-font-weight: 700 !default;
+
 @import '_bootstrap';
 
 $light-bg: $navbar-default-bg;
@@ -25,10 +27,10 @@ $border-color: $table-border-color;
 }
 
 .browsehappy {
-    margin: 0.2em 0;
-    background: #ccc;
-    color: #000;
-    padding: 0.2em 0;
+	margin: 0.2em 0;
+	background: #ccc;
+	color: #000;
+	padding: 0.2em 0;
 }
 
 body {
@@ -40,7 +42,7 @@ body {
 img.svg {
 	display: block;
 	margin: 0 auto;
-	width: 400px;
+	width: 280px;
 }
 
 .site-header {
@@ -68,6 +70,28 @@ img.svg {
 			}
 		}
 	}
+
+	.navbar-toggle {
+		background-color: $brand-primary !important;
+		border-color: $brand-primary;
+
+		.icon-bar {
+			background-color: #FFF;
+		}
+
+		&:focus {
+			background-color: $brand-primary;
+		}
+
+		&.collapsed {
+			background-color: #FFF !important;
+			border-color: $brand-primary;
+
+			.icon-bar {
+				background-color: $brand-primary;
+			}
+		}
+	}
 }
 
 .team {
@@ -83,13 +107,96 @@ img.svg {
 	min-height: 68px;
 }
 
-.goals span {
-	font-size: 46px;
-	display: inline-block;
+.team-info {
+	> * {
+		font-size: 16px;
+
+		> div {
+			font-size: 32px;
+		}
+
+		&:nth-of-type(1) {
+			text-align: left;
+		}
+
+		&:nth-of-type(2) {
+			text-align: right;
+		}
+	}
 }
 
-.matches {
-	font-size: 18px;
+.team-goals {
+	margin-bottom: ($grid-gutter-width / 2);
+	text-align: left;
+
+	> div {
+		padding-left: 15px;
+		padding-right: 0;
+
+
+		&:nth-of-type(2) {
+			padding: 0;
+			text-align: center;
+		}
+
+		&:nth-of-type(3) {
+			padding-left: 0;
+			padding-right: 15px;
+			text-align: right;
+		}
+
+		> div {
+			font-size: 24px;
+		}
+	}
+}
+
+.team-matches {
+	text-align: left;
+}
+
+.match-game {
+	border-top: 1px solid $border-color;
+	color: $gray-light;
+	font-size: 12px;
+	min-height: 50px;
+	padding: ($grid-gutter-width / 6) 0;
+
+	&.final {
+		color: $text-color;
+	}
+
+	> * {
+		padding: 0;
+		min-height: 36px;
+
+		&:nth-of-type(1) {
+			background-image: url(http://www.geoips.com/assets/img/flag/32/nl.png);
+			background-position: top right;
+			background-repeat: no-repeat;
+			background-size: 24px;
+			padding: 0 ($grid-gutter-width) 0 ($grid-gutter-width / 6) ;
+			text-align: right;
+		}
+
+		&:nth-of-type(2) {
+			padding: 0;
+			text-align: center;
+		}
+
+		&:nth-of-type(3) {
+			background-image: url(http://www.geoips.com/assets/img/flag/32/br.png);
+			background-position: top left;
+			background-repeat: no-repeat;
+			background-size: 24px;
+			padding: 0 ($grid-gutter-width / 6) 0 ($grid-gutter-width);
+			text-align: left;
+		}
+
+		.goals {
+			font-size: 18px;
+		}
+	}
 }
 
 .match {
@@ -103,6 +210,11 @@ img.svg {
 
 .submenu {
 	margin-bottom: ($grid-gutter-width / 2);
+
+	.btn {
+		font-size: 12px;
+		padding: 4px 8px;
+	}
 }
 
 .stats {
@@ -128,8 +240,8 @@ img.svg {
 
 		div {
 			color: $text-color;
-			font-size: 16px;
-			font-family: SuperGroteskMedium;
+			font-size: 18px;
+			font-family: Arvo, serif;
 			line-height: 1;
 		}
 	}
