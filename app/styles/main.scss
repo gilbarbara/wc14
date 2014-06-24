@@ -101,6 +101,13 @@ img.svg {
 	margin-bottom: 20px;
 	padding: ($grid-gutter-width / 2);
 	text-align: center;
+
+	&.dead {
+		.team-name,
+		.team-info {
+			color: red;
+		}
+	}
 }
 
 .team-name {
@@ -130,9 +137,9 @@ img.svg {
 	text-align: left;
 
 	> div {
+		font-size: 24px;
 		padding-left: 15px;
 		padding-right: 0;
-
 
 		&:nth-of-type(2) {
 			padding: 0;
@@ -145,8 +152,9 @@ img.svg {
 			text-align: right;
 		}
 
-		> div {
-			font-size: 24px;
+		.icon {
+			height: 24px;
+			width: 24px;
 		}
 	}
 }
@@ -157,8 +165,8 @@ img.svg {
 
 .match-game {
 	border-top: 1px solid $border-color;
-	color: $gray-light;
-	font-size: 12px;
+	color: $text-muted;
+	font-size: 14px;
 	min-height: 50px;
 	padding: ($grid-gutter-width / 6) 0;
 
@@ -166,11 +174,10 @@ img.svg {
 		color: $text-color;
 	}
 
-	> * {
-		padding: 0;
+	> div {
 		min-height: 36px;
 
-		&:nth-of-type(1) {
+		&.left {
 			background-image: url(http://www.geoips.com/assets/img/flag/32/nl.png);
 			background-position: top right;
 			background-repeat: no-repeat;
@@ -179,18 +186,22 @@ img.svg {
 			text-align: right;
 		}
 
-		&:nth-of-type(2) {
+		&.center {
 			padding: 0;
 			text-align: center;
 		}
 
-		&:nth-of-type(3) {
+		&.right {
 			background-image: url(http://www.geoips.com/assets/img/flag/32/br.png);
 			background-position: top left;
 			background-repeat: no-repeat;
 			background-size: 24px;
 			padding: 0 ($grid-gutter-width / 6) 0 ($grid-gutter-width);
 			text-align: left;
+		}
+
+		&.venue {
+			color: $text-muted;
 		}
 
 		.goals {
@@ -219,19 +230,18 @@ img.svg {
 
 .stats {
 	background-color: #FFF;
-	border-bottom: 1px solid $border-color;
-	border-top: 1px solid $border-color;
+	border-bottom: 1px solid $text-muted;
+	border-top: 1px solid $text-muted;
 	margin-top: ($grid-gutter-width / 2);
 	margin-bottom: 0;
 
 	.item {
-		color: $gray-light;
 		padding: ($grid-gutter-width / 3) ($grid-gutter-width / 6) ($grid-gutter-width / 6);
 		text-align: center;
 		text-decoration: none;
 
 		& + .item {
-			border-left: 1px solid $border-color;
+			border-left: 1px solid $text-muted;
 		}
 
 		&.active {
@@ -239,7 +249,6 @@ img.svg {
 		}
 
 		div {
-			color: $text-color;
 			font-size: 18px;
 			font-family: Arvo, serif;
 			line-height: 1;
@@ -255,5 +264,31 @@ img.svg {
 			text-align: left;
 			@include truncate(100%);
 		}
+	}
+}
+
+svg.icon {
+	height: 32px;
+	width: 32px;
+	vertical-align: baseline;
+}
+
+@media (max-width: 768px) {
+	.team {
+		img {
+			width: 75px;
+		}
+	}
+}
+
+@media (max-width: 1200px) {
+	.match-game {
+		font-size: 13px;
+	}
+}
+
+@media (min-width: 1200px) {
+	.match-game {
+		font-size: 12px;
 	}
 }

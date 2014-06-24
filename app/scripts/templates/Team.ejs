@@ -1,7 +1,6 @@
-<div class="team" data-id="<%= id %>">
+<div class="team<%= losses > 1 ? ' dead' : '' %>" data-id="<%= id %>">
     <img src="<%= logo %>">
     <h2 class="team-name"><%= name %></h2>
-
 	<div class="team-info row">
 		<div class="col-xs-6">
 			<div><%= group %></div>
@@ -30,19 +29,17 @@
 
 	<div class="team-goals row">
 		<h4 class="col-xs-12">Goals</h4>
+
 		<div class="col-xs-4">
-			<div><%= goalsDiff %></div>
-			DIFF
+			<svg class="icon"><use xlink:href="#goals-diff"></use></svg> <%= goalsDiff %>
 		</div>
 
 		<div class="col-xs-4">
-			<div><%= goalsFor %></div>
-			FOR
+			<svg class="icon"><use xlink:href="#goals-for"></use></svg> <%= goalsFor %>
 		</div>
 
 		<div class="col-xs-4">
-			<div><%= goalsAgainst %></div>
-			AGAINST
+			<svg class="icon"><use xlink:href="#goals-against"></use></svg> <%= goalsAgainst %>
 		</div>
 	</div>
 
@@ -50,16 +47,25 @@
 		<h4>Matches</h4>
 
 		<% _.each(WC.getMatches(id), function (d) { %>
-			<div class="match-game row <%= d.status !== 'Pre-game' ? 'final' : '' %>">
-				<div class="col-xs-5" style="background-image:url('<%= WC.getFlag(d.homeTeamId) %>');"><%= WC.getTeam(d.homeTeamId).name %></div>
-				<div class="col-xs-2"><% if(d.status !== 'Pre-game') { %>
-					<div class="goals"><%= d.homeScore %> : <%= d.awayScore %></div>
+
+			<%
+				var leftId = (id ===  d.homeTeamId ? d.homeTeamId : d.awayTeamId),
+					leftScore = (id ===  d.homeTeamId ? d.homeScore : d.awayScore),
+					rightId = (id ===  d.homeTeamId ? d.awayTeamId : d.homeTeamId),
+					rightScore = (id ===  d.homeTeamId ? d.awayScore : d.homeScore); %>
+
+			<div class="match-game row <%= d.status !== 'Pre-game' ? 'final' : '' %>" data-id="<%= id %>">
+				<div class="col-xs-5 left" style="background-image:url('<%= WC.getFlag(leftId) %>');"><%= WC.getTeam(leftId).name %></div>
+				<div class="col-xs-2 center">
+					<% if(d.status !== 'Pre-game') { %>
+					<div class="goals"><%= leftScore %> : <%= rightScore %></div>
 					<% } else { %>
 					<%= WC.formatDate(d.startTime) %>
-				<% } %></div>
-				<div class="col-xs-5" style="background-image:url('<%= WC.getFlag(d.awayTeamId) %>');"><%= WC.getTeam(d.awayTeamId).name %></div>
+					<% } %>
+				</div>
+				<div class="col-xs-5 right" style="background-image:url('<%= WC.getFlag(rightId) %>');"><%= WC.getTeam(rightId).name %></div>
+				<!--<div class="col-xs-12 venue"><%= d.venue.replace(/,.*?\)/, ')') %></div>-->
 			</div>
-			<% console.log(d);%>
 		<% }) %>
 
 	</div>

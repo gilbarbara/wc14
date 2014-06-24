@@ -28,6 +28,12 @@ window.WC = {
 
 		this.buildData();
 
+		$.get('images/icons.svg',
+			function (svgDoc) {
+				var importedSVGRootElement = document.importNode(svgDoc.documentElement, true);
+				$('body').append(importedSVGRootElement);
+			}, 'xml');
+
 		this.ready
 			.done(function () {
 				that.$el.html('');
@@ -42,14 +48,13 @@ window.WC = {
 	buildData: function () {
 		var that = this,
 			teams = $.getJSON('http://wc14.kollectiv.org/api/?endpoint=teams'),
-			matches = $.getJSON('http://wc14.kollectiv.org/api/?endpoint=matches'),
-			players = $.getJSON('http://wc14.kollectiv.org/api/?endpoint=players');
+			matches = $.getJSON('http://wc14.kollectiv.org/api/?endpoint=matches');
+//			players = $.getJSON('http://wc14.kollectiv.org/api/?endpoint=players');
 
-		$.when(teams, matches, players)
-			.done(function (teamsResponse, matchesResponse, playersResponse) {
+		$.when(teams, matches)
+			.done(function (teamsResponse, matchesResponse) {
 				that.data.teams = teamsResponse[0];
 				that.data.matches = matchesResponse[0];
-				that.data.players = playersResponse[0];
 
 				that.ready.resolve();
 			})
@@ -105,7 +110,7 @@ window.WC = {
 			'6B2A7C79-3758-421C-8967-7ABFE1FDC982': 'http://www.geoips.com/assets/img/flag/32/ci.png',
 			'A0CD1355-B6FC-48D3-B67B-AF5AA2B2C1E1': 'http://www.geoips.com/assets/img/flag/32/hr.png',
 			'8BABAAE8-D906-44F7-B784-A828573B35D9': 'http://www.geoips.com/assets/img/flag/32/ec.png',
-			'2EFCFEB2-EBF8-4628-B659-B00C49D93811': 'http://www.geoips.com/assets/img/flag/32/uk.png',
+			'2EFCFEB2-EBF8-4628-B659-B00C49D93811': 'http://www.geoips.com/assets/img/flag/32/gb.png',
 			'4F9F018B-C14D-4E73-8145-2E77B8C64E9E': 'http://www.geoips.com/assets/img/flag/32/fr.png',
 			'FE173702-5266-4C67-8647-7A6A53ED0DE8': 'http://www.geoips.com/assets/img/flag/32/de.png',
 			'CCC66F75-7004-46E4-BB31-259B06A42516': 'http://www.geoips.com/assets/img/flag/32/gh.png',
@@ -131,7 +136,7 @@ window.WC = {
 
 	formatDate: function (timeString) {
 		var date = new Date(timeString),
-			convertdLocalTime = new Date(date.getTime() - (date.getTimezoneOffset() * 60000));
+			convertdLocalTime = new Date(date.getTime()); // - (date.getTimezoneOffset() * 60000)
 
 		function pad (num) {
 			var norm = Math.abs(Math.floor(num));
@@ -141,8 +146,8 @@ window.WC = {
 		return pad(convertdLocalTime.getDate()) + '/' + pad(convertdLocalTime.getMonth() + 1) + '<br>' + pad(convertdLocalTime.getHours()) + ':' + pad(convertdLocalTime.getMinutes());
 
 		/*return {
-			day: pad(convertdLocalTime.getDate()) + '/' + pad(convertdLocalTime.getMonth() + 1),
-			time: pad(convertdLocalTime.getHours()) + ':' + pad(convertdLocalTime.getMinutes())
-		};*/
+		 day: pad(convertdLocalTime.getDate()) + '/' + pad(convertdLocalTime.getMonth() + 1),
+		 time: pad(convertdLocalTime.getHours()) + ':' + pad(convertdLocalTime.getMinutes())
+		 };*/
 	}
 };
