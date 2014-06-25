@@ -144,10 +144,5 @@ window.WC = {
 		}
 
 		return pad(convertdLocalTime.getDate()) + '/' + pad(convertdLocalTime.getMonth() + 1) + '<br>' + pad(convertdLocalTime.getHours()) + ':' + pad(convertdLocalTime.getMinutes());
-
-		/*return {
-		 day: pad(convertdLocalTime.getDate()) + '/' + pad(convertdLocalTime.getMonth() + 1),
-		 time: pad(convertdLocalTime.getHours()) + ':' + pad(convertdLocalTime.getMinutes())
-		 };*/
 	}
 };
