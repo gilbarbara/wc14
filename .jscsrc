@@ -2,7 +2,7 @@
 	"disallowDanglingUnderscores": true,
 	"disallowEmptyBlocks": true,
 	"disallowKeywords": ["with"],
-"disallowMixedSpacesAndTabs": true,
+	"disallowMixedSpacesAndTabs": true,
 	"disallowMultipleLineBreaks": true,
 	"disallowMultipleLineStrings": true,
 	"disallowQuotedKeysInObjects": "allButReserved",

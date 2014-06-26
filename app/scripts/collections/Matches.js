@@ -10,11 +10,11 @@ WC.Collections = WC.Collections || {};
 		url: 'http://worldcup.kimonolabs.com/api/matches?apikey=9144470129c2788e93b377ffa8faa3ad',
 
 		initialize: function () {
-			this.type = 'goalsFor';
+			this.type = 'group';
 		},
 
-		comparator: function (collection) {
-			return (collection.get('startTime'));
+		comparator: function (model) {
+			return [model.get('group'), model.get('startTime')];
 		},
 
 		strategies: {

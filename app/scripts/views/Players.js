@@ -33,7 +33,6 @@ WC.Views = WC.Views || { };
 
 		addOne: function (player) {
 			var playerBox = new WC.Views.Player({ model: player });
-			console.log(player.toJSON());
 
 			if (this.collection.type === 'group' && this.group !== player.get('group')) {
 				this.group = player.get('group');

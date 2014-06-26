@@ -94,19 +94,19 @@ img.svg {
 	}
 }
 
-.team {
+.team, .match {
 	@include border-radius(10px);
 	background-color: #FFF;
 	border: 1px solid #DDD;
 	margin-bottom: 20px;
 	padding: ($grid-gutter-width / 2);
 	text-align: center;
+}
 
-	&.dead {
-		.team-name,
-		.team-info {
-			color: red;
-		}
+.team.dead {
+	.team-name,
+	.team-info {
+		color: red;
 	}
 }
 
@@ -170,6 +170,11 @@ img.svg {
 	min-height: 50px;
 	padding: ($grid-gutter-width / 6) 0;
 
+	.match & {
+		border-top: none;
+		padding: 0;
+	}
+
 	&.final {
 		color: $text-color;
 	}
@@ -201,7 +206,12 @@ img.svg {
 		}
 
 		&.venue {
-			color: $text-muted;
+			padding-left: 0;
+			text-align: left;
+		}
+
+		&.time {
+			padding-right: 0;
 		}
 
 		.goals {
@@ -210,14 +220,6 @@ img.svg {
 	}
 }
 
-.match {
-	@include border-radius(10px);
-	background-color: #FFF;
-	border: 1px solid #DDD;
-	margin-bottom: 20px;
-	padding: ($grid-gutter-width / 2);
-	text-align: center;
-}
 
 .submenu {
 	margin-bottom: ($grid-gutter-width / 2);

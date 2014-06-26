@@ -33,9 +33,8 @@ WC.Views = WC.Views || { };
 
 		addOne: function (match) {
 			var matchBox = new WC.Views.Match({ model: match });
-			console.log(match.toJSON());
 
-			if (this.collection.type === 'group' && this.group !== match.get('group')) {
+			if (this.collection.type === 'group' && this.group !== match.get('group') && match.get('group') !== null) {
 				this.group = match.get('group');
 				this.$el.find('>.items').append('<h2 class="col-xs-12"> Group ' + match.get('group') + '</h2>');
 			}

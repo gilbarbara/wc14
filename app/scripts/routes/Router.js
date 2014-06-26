@@ -8,7 +8,8 @@ WC.Routers = WC.Routers || { };
 			'': 'teams',
 			teams: 'teams',
 			matches: 'matches',
-			players: 'players'
+			players: 'players',
+			stats: 'stats'
 		},
 
 		teams: function () {
@@ -24,6 +25,10 @@ WC.Routers = WC.Routers || { };
 		players: function () {
 			WC.collections.players = new WC.Collections.Players(WC.data.players);
 			WC.views.players = new WC.Views.Players({ collection: WC.collections.players });
+		},
+
+		stats: function () {
+			WC.views.players = new WC.Views.Stats();
 		}
 	});
 })();

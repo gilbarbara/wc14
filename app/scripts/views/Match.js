@@ -9,7 +9,7 @@ WC.Views = WC.Views || { };
 
 		tagName: 'div',
 
-		className: WC.columnSize,
+		className: 'col-xs-12 col-sm-6 col-md-4 col-lg-4',
 
 		events: { },
 

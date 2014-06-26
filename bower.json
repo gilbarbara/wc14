@@ -11,8 +11,7 @@
 	"backbone.paginator": "~2",
 	"underscore.string": "~2.3",
     "jquery.i18n": "https://github.com/wikimedia/jquery.i18n.git#~1.0.2",
-    "CLDRPluralRuleParser": "https://github.com/santhoshtr/CLDRPluralRuleParser.git",
-    "momentjs": "~2.6.0"
+    "CLDRPluralRuleParser": "https://github.com/santhoshtr/CLDRPluralRuleParser.git"
   },
   "devDependencies": {}
 }

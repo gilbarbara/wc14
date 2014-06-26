@@ -1,0 +1,10 @@
+<h1>Stats</h1>
+<div class="goals-per-game"><%= WC.data.stats.goalsPerGame %> Goals Per Match</div>
+
+<div><%= parseInt(WC.data.stats.totalGoals) %> Goals</div>
+<div><%= parseInt(WC.data.stats.totalMatches) %> Matches</div>
+<div><%= parseInt(WC.data.stats.totalDraws) %> Draws</div>
+<div><%= parseInt(WC.data.stats.totalDrawsZero) %> No Goals (0:0)</div><br>
+<% _.each(WC.data.stats.totalPerVenueSorted, function (d) { %>
+	<div><%= d %> - <%= WC.data.stats.totalPerVenue[d] %></div>
+<% }); %>

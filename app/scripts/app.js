@@ -11,7 +11,29 @@ window.WC = {
 	views: { },
 	data: {
 		teams: [],
-		matches: []
+		matches: [],
+		players: [],
+		venues: {
+			'Arena Amazônia (Manaus, Amazonas)': 'Arena Amazônia - Manaus',
+			'Arena Corinthians (São Paulo, São Paulo)': 'Arena Corinthians - São Paulo',
+			'Estádio Joaquim Américo Guimarães (Curitiba, Paraná)': 'Arena da Baixada - Curitiba',
+			'Arena das Dunas (Natal, Rio Grande do Norte)': 'Arena das Dunas - Natal',
+			'Itaipava Arena Fonte Nova (Salvador, Bahia)': 'Arena Fonte Nova - Salvador',
+			'Arena Pantanal (Cuiabá, Mato Grosso)': 'Arena Pantanal - Cuiabá',
+			'Itaipava Arena Pernambuco (Recife, Pernambuco)': 'Arena Pernambuco - Recife',
+			'Estádio José Pinheiro Borba (Beira-Rio) (Porto Alegre, Rio Grande do Sul)': 'Estádio Beira-Rio - Porto Alegre',
+			'Estádio Governador Plácido Aderaldo Castelo (Fortaleza, Ceará)': 'Estádio Castelão - Fortaleza',
+			'Estadio Jornalista Mário Filho (Maracanã) (Rio de Janeiro, Rio de Janeiro)': 'Estadio Maracanã - Rio de Janeiro',
+			'Estádio Governador Magalhães Pinto (Belo Horizonte, Minas Gerais)': 'Estádio Mineirão - Belo Horizonte',
+			'Estádio Nacional de Brasília (Brasília, Distrito Federal)': 'Estádio Nacional - Brasília'
+		},
+		stats: {
+			totalGoals: 0,
+			totalMatches: 0,
+			totalDraws: 0,
+			totalDrawsZero: 0,
+			totalPerVenue: {}
+		}
 	},
 
 	ready: $.Deferred(),
@@ -48,13 +70,44 @@ window.WC = {
 	buildData: function () {
 		var that = this,
 			teams = $.getJSON('http://wc14.kollectiv.org/api/?endpoint=teams'),
-			matches = $.getJSON('http://wc14.kollectiv.org/api/?endpoint=matches');
-//			players = $.getJSON('http://wc14.kollectiv.org/api/?endpoint=players');
+			matches = $.getJSON('http://wc14.kollectiv.org/api/?endpoint=matches'),
+			players = $.getJSON('http://wc14.kollectiv.org/api/?endpoint=players');
 
-		$.when(teams, matches)
-			.done(function (teamsResponse, matchesResponse) {
+		$.when(teams, matches, players)
+			.done(function (teamsResponse, matchesResponse, playersResponse) {
 				that.data.teams = teamsResponse[0];
 				that.data.matches = matchesResponse[0];
+				that.data.players = playersResponse[0];
+
+				_.each(that.data.matches, function (d) {
+
+					if (d.status === 'Final') {
+						if (d.homeScore === d.awayScore) {
+							that.data.stats.totalDraws++;
+						}
+
+						if (d.homeScore === 0 && d.homeScore === d.awayScore) {
+							that.data.stats.totalDrawsZero++;
+						}
+
+						if (!that.data.stats.totalPerVenue[that.data.venues[d.venue]]) {
+							that.data.stats.totalPerVenue[that.data.venues[d.venue]] = 0;
+						}
+						that.data.stats.totalPerVenue[that.data.venues[d.venue]] += (d.homeScore + d.awayScore);
+
+						that.data.stats.totalMatches++;
+					}
+
+					that.data.stats.totalGoals += (d.homeScore + d.awayScore);
+				});
+
+				that.data.stats.goalsPerGame = parseFloat((that.data.stats.totalGoals / that.data.stats.totalMatches).toFixed(2));
+				that.data.stats.totalPerVenueSorted = Object.keys(that.data.stats.totalPerVenue).sort(function(a,b){
+					return that.data.stats.totalPerVenue[b]-that.data.stats.totalPerVenue[a];
+				});
+
+
+				console.log(that.data.stats);
 
 				that.ready.resolve();
 			})
@@ -143,6 +196,9 @@ window.WC = {
 			return (norm < 10 ? '0' : '') + norm;
 		}
 
-		return pad(convertdLocalTime.getDate()) + '/' + pad(convertdLocalTime.getMonth() + 1) + '<br>' + pad(convertdLocalTime.getHours()) + ':' + pad(convertdLocalTime.getMinutes());
+		return {
+			date: pad(convertdLocalTime.getDate()) + '/' + pad(convertdLocalTime.getMonth() + 1),
+			time: pad(convertdLocalTime.getHours()) + ':' + pad(convertdLocalTime.getMinutes())
+		};
 	}
 };
