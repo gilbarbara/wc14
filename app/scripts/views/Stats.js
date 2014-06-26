@@ -1,25 +1,23 @@
 WC.Views = WC.Views || {};
 
 (function () {
-    'use strict';
+	'use strict';
 
-    WC.Views.Stats = Backbone.View.extend({
+	WC.Views.Stats = Backbone.View.extend({
 
-        template: JST['app/scripts/templates/Stats.ejs'],
+		template: JST['app/scripts/templates/Stats.ejs'],
 
-        events: {},
+		events: { },
 
-        initialize: function () {
+		initialize: function () {
 			this.render();
-        },
+		},
 
-        render: function () {
+		render: function () {
 			this.setElement(this.template());
 			WC.$el.html(this.$el);
 
 			return this;
-        }
-
-    });
-
+		}
+	});
 })();

@@ -102,12 +102,9 @@ window.WC = {
 				});
 
 				that.data.stats.goalsPerGame = parseFloat((that.data.stats.totalGoals / that.data.stats.totalMatches).toFixed(2));
-				that.data.stats.totalPerVenueSorted = Object.keys(that.data.stats.totalPerVenue).sort(function(a,b){
-					return that.data.stats.totalPerVenue[b]-that.data.stats.totalPerVenue[a];
+				that.data.stats.totalPerVenueSorted = Object.keys(that.data.stats.totalPerVenue).sort(function(a,b) {
+					return that.data.stats.totalPerVenue[b] - that.data.stats.totalPerVenue[a];
 				});
-
-
-				console.log(that.data.stats);
 
 				that.ready.resolve();
 			})
