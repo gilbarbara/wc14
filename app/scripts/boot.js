@@ -1,5 +1,8 @@
 $(document).ready(function () {
 	'use strict';
+
+	$('#content').css('min-height', $(window).height() - 70 - $('footer').outerHeight());
+
 	WC.init();
 
 	$(document)

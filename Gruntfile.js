@@ -311,7 +311,7 @@ module.exports = function (grunt) {
 		shell: {
 			rsync: {
 				command: function () {
-					return 'rsync -rvpa --progress --delete --exclude=.DS_Store -e "ssh -q -t" dist/* kollect@kollectiv.org:/home/kollect/public_html/wc14';
+					return 'rsync -rvpa --progress --delete --exclude=.DS_Store -e "ssh -q -t" dist/ kollect@kollectiv.org:/home/kollect/public_html/wc14/';
 				}
 			}
 		}

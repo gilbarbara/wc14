@@ -1,48 +1,23 @@
-<!--<div class="container">
-	<div class="header clearfix">
-		<div class="logo"></div>
-		<div class="menu">
-			<h1>WC 2014</h1>
-
-			<ul class="list-inline">
-				<li class="active"><a href="#teams" data-toggle="tab">Teams</a></li>
-				<li><a href="#matches" data-toggle="tab">Matches</a></li>
-				<li><a href="#players" data-toggle="tab">Players</a></li>
-				<li><a href="#stats" data-toggle="tab">Stats</a></li>
-			</ul>
-		</div>
-	</div>
-	<div class="tab-content">
-		<div class="tab-pane fade in active" id="teams">
-			<a href="#">Goals For</a><span>/</span>
-			<a href="#">Group</a><span>/</span>
-			<a href="#">Alphabetically</a>
-		</div>
-		<div class="tab-pane fade" id="matches">...</div>
-		<div class="tab-pane fade" id="players">...</div>
-		<div class="tab-pane fade" id="stats">...</div>
-	</div>
-</div>-->
-
-
-
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
 	<div class="container-fluid">
 		<!-- Brand and toggle get grouped for better mobile display -->
 		<div class="navbar-header">
-			<!--<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1">
 				<span class="sr-only">Toggle navigation</span>
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
-			</button>-->
+			</button>
 			<a class="navbar-brand" href="/#" data-nav="1">World Cup 2014</a>
 		</div>
 
 		<!-- Collect the nav links, forms, and other content for toggling -->
-		<!--<div class="collapse navbar-collapse" id="navbar-collapse-1" role="navigation">
+		<div class="collapse navbar-collapse" id="navbar-collapse-1" role="navigation">
 			<ul class="nav navbar-nav">
-				<li class="<%= (Backbone.history.fragment === 'teams' ? 'active' : '') %>">
+				<li class="<%= (Backbone.history.fragment === 'stats' ? 'active' : '') %>">
+					<a href="/#stats" data-nav="1">Stats</a>
+				</li>
+				<!--<li class="<%= (Backbone.history.fragment === 'teams' ? 'active' : '') %>">
 					<a href="/#teams" data-nav="1">Teams</a>
 				</li>
 				<li>
@@ -51,8 +26,8 @@
 				<li>
 					<a href="/#players" data-nav="1">Players</a>
 				</li>
-
+-->
 			</ul>
-		</div>-->
+		</div>
 	</div>
 </nav>

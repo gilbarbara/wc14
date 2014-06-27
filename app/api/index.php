@@ -10,7 +10,7 @@ if ($endpoint) {
 	$curl = curl_init();
 	curl_setopt_array($curl, array(
 		CURLOPT_RETURNTRANSFER => 1,
-		CURLOPT_URL => 'http://worldcup.kimonolabs.com/api/'.$endpoint."?limit=100&apikey=9144470129c2788e93b377ffa8faa3ad".($endpoint === 'players' ? '&sort=goals,-1' : '')
+		CURLOPT_URL => 'http://worldcup.kimonolabs.com/api/'.$endpoint."?limit=100&apikey=9144470129c2788e93b377ffa8faa3ad".($endpoint === 'players' ? '&sort=goals,-1' : ($endpoint === 'teams' ? '&sort=goalsFor,-1' : ''))
 	));
 	$output = curl_exec($curl);
 	$httpcode = curl_getinfo($curl, CURLINFO_HTTP_CODE);

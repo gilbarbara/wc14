@@ -10,7 +10,8 @@ WC.Views = WC.Views || { };
 		el: '.site-header',
 
 		events: {
-			'click .navbar-nav a': 'navigate'
+			'click .navbar-nav a, .navbar-brand': 'navigate'
+
 		},
 
 		initialize: function () {
@@ -25,9 +26,13 @@ WC.Views = WC.Views || { };
 
 		navigate: function (e) {
 			var $this = $(e.target);
-
-			$this.parent().addClass('active')
-				.siblings().removeClass('active');
+			if ($this.parents('.navbar-nav').size()) {
+				$this.parent().addClass('active')
+					.siblings().removeClass('active');
+			}
+			else {
+				$('.navbar-nav li').removeClass('active');
+			}
 		}
 	});
 
