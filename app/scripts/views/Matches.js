@@ -11,12 +11,9 @@ WC.Views = WC.Views || { };
 
 		initialize: function () {
 
-			this.collection.on('sort', function () {
-				this.$el.find('>.items').html('');
-				this.collection.each(this.addOne, this);
-			}, this);
-
 			this.collection.on('add', this.addOne, this);
+
+			this.stages = _.extend({}, WC.data.stages);
 
 			this.render();
 		},
@@ -32,14 +29,37 @@ WC.Views = WC.Views || { };
 		},
 
 		addOne: function (match) {
-			var matchBox = new WC.Views.Match({ model: match });
+			var matchBox = new WC.Views.Match({ model: match }),
+				that = this,
+				time = WC.formatDate(match.get('startTime')),
+				stage;
 
-			if (this.collection.type === 'group' && this.group !== match.get('group') && match.get('group') !== null) {
-				this.group = match.get('group');
-				this.$el.find('>.items').append('<h2 class="col-xs-12"> Group ' + match.get('group') + '</h2>');
+			stage = _.find(_.invert(this.stages), function (d, i) {
+				if (time.timestamp > i) {
+					delete that.stages[d];
+				}
+				return time.timestamp > i;
+			});
+
+			if (stage) {
+				this.$el.find('>.items').append('<h1 class="col-xs-12">' + stage + '</h1>');
 			}
 
 			this.$el.find('>.items').append(matchBox.render().el);
+		},
+
+		remove: function () {
+			this.removeViews();
+
+			this.undelegateEvents();
+
+			this.$el.removeData().unbind();
+
+			Backbone.View.prototype.remove.call(this);
+		},
+
+		removeViews: function () {
+			this.trigger('cleanup');
 		}
 
 	});

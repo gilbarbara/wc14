@@ -5,30 +5,46 @@ WC.Routers = WC.Routers || { };
 
 	WC.Routers.Router = Backbone.Router.extend({
 		routes: {
-			'': 'teams',
-			teams: 'teams',
-			matches: 'matches',
+			'': 'index',
+			group: 'group',
+			'second-stage': 'secondStage',
 			players: 'players',
 			stats: 'stats'
 		},
 
-		teams: function () {
-			WC.collections.teams = new WC.Collections.Teams(WC.data.teams);
-			WC.views.teams = new WC.Views.Teams({ collection: WC.collections.teams });
+		index: function () {
+			WC.router.navigate('#stats', { trigger: true });
 		},
 
-		matches: function () {
-			WC.collections.matches = new WC.Collections.Matches(WC.data.matches);
-			WC.views.matches = new WC.Views.Matches({ collection: WC.collections.matches });
+		group: function () {
+			WC.cleanUp('group');
+			this.listenToOnce(Backbone, 'cleaned', function () {
+				WC.collections.teams = new WC.Collections.Teams(WC.data.teams);
+				WC.views.teams = new WC.Views.Teams({ collection: WC.collections.teams });
+			});
+		},
+
+		secondStage: function () {
+			WC.cleanUp('matches');
+			this.listenToOnce(Backbone, 'cleaned', function () {
+				WC.collections.matches = new WC.Collections.Matches(WC.getSecRoundMatches());
+				WC.views.matches = new WC.Views.Matches({ collection: WC.collections.matches });
+			});
 		},
 
 		players: function () {
-			WC.collections.players = new WC.Collections.Players(WC.data.players);
-			WC.views.players = new WC.Views.Players({ collection: WC.collections.players });
+			WC.cleanUp('players');
+			this.listenToOnce(Backbone, 'cleaned', function () {
+				WC.collections.players = new WC.Collections.Players(WC.data.players);
+				WC.views.players = new WC.Views.Players({ collection: WC.collections.players });
+			});
 		},
 
 		stats: function () {
-			WC.views.players = new WC.Views.Stats();
+			WC.cleanUp('stats');
+			this.listenToOnce(Backbone, 'cleaned', function () {
+				WC.views.stats = new WC.Views.Stats();
+			});
 		}
 	});
 })();

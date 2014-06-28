@@ -31,7 +31,8 @@ WC.Views = WC.Views || { };
 					.siblings().removeClass('active');
 			}
 			else {
-				$('.navbar-nav li').removeClass('active');
+				$('.navbar-nav li').find('a[href="/#stats"]').trigger('click');
+				return false;
 			}
 		}
 	});

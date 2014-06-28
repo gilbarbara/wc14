@@ -1,4 +1,4 @@
-<div class="team<%= losses > 1 ? ' dead' : '' %>" data-id="<%= id %>">
+<div class="team<%= groupRank > 2 ? ' dead' : '' %>" data-id="<%= id %>">
     <img src="<%= logo %>">
     <h2 class="team-name"><%= name %></h2>
 	<div class="team-info row">
@@ -56,7 +56,7 @@
 					matchTime = WC.formatDate(d.startTime) %>
 
 			<div class="match-game row <%= d.status !== 'Pre-game' ? 'final' : '' %>" data-id="<%= id %>">
-				<div class="col-xs-5 left" style="background-image:url('<%= WC.getFlag(leftId) %>');"><%= WC.getTeam(leftId).name %></div>
+				<div class="col-xs-5 left" style="background-image:url('<%= WC.getFlag(leftId) %>');"><%= leftScore > rightScore ? '<strong>' : '' %><%= WC.data.countryCode[WC.getTeam(leftId).name] %><%= leftScore > rightScore ? '</strong>' : '' %></div>
 				<div class="col-xs-2 center">
 					<% if(d.status !== 'Pre-game') { %>
 					<div class="goals"><%= leftScore %> : <%= rightScore %></div>
@@ -64,7 +64,7 @@
 					<%= matchTime.date %><br><%= matchTime.time %>
 					<% } %>
 				</div>
-				<div class="col-xs-5 right" style="background-image:url('<%= WC.getFlag(rightId) %>');"><%= WC.getTeam(rightId).name %></div>
+				<div class="col-xs-5 right" style="background-image:url('<%= WC.getFlag(rightId) %>');"><%= rightScore > leftScore ? '<strong>' : '' %><%= WC.data.countryCode[WC.getTeam(rightId).name] %><%= rightScore > leftScore ? '</strong>' : '' %></div>
 				<!--<div class="col-xs-12 venue"><%= d.venue.replace(/,.*?\)/, ')') %></div>-->
 			</div>
 			<% } %>

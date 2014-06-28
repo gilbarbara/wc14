@@ -18,6 +18,14 @@ WC.Views = WC.Views || {};
 			WC.$el.html(this.$el);
 
 			return this;
+		},
+
+		remove: function () {
+			this.undelegateEvents();
+
+			this.$el.removeData().unbind();
+
+			Backbone.View.prototype.remove.call(this);
 		}
 	});
 })();

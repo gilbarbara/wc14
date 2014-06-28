@@ -27,6 +27,47 @@ window.WC = {
 			'Estádio Governador Magalhães Pinto (Belo Horizonte, Minas Gerais)': 'Estádio Mineirão - Belo Horizonte',
 			'Estádio Nacional de Brasília (Brasília, Distrito Federal)': 'Estádio Nacional - Brasília'
 		},
+		countryCode: {
+			'Brazil': 'BRA',
+			'Mexico': 'MEX',
+			'Cameroon': 'CMR',
+			'Croatia': 'CRO',
+			'Netherlands': 'NED',
+			'Chile': 'CHI',
+			'Australia': 'AUS',
+			'Spain': 'ESP',
+			'Colombia': 'COL',
+			'Côte d\'Ivoire': 'CIV',
+			'Japan': 'JPN',
+			'Greece': 'GRE',
+			'Costa Rica': 'CRC',
+			'Italy': 'ITA',
+			'England': 'ENG',
+			'Uruguay': 'URU',
+			'France': 'FRA',
+			'Switzerland': 'SUI',
+			'Ecuador': 'ECU',
+			'Honduras': 'HON',
+			'Argentina': 'ARG',
+			'Iran': 'IRN',
+			'Nigeria': 'NGA',
+			'Bosnia-Herzegovina': 'BIH',
+			'Germany': 'GER',
+			'Ghana': 'GHA',
+			'United States': 'USA',
+			'Portugal': 'POR',
+			'Belgium': 'BEL',
+			'Algeria': 'ALG',
+			'Russia': 'RUS',
+			'Korea Republic': 'KOR'
+		},
+		stages: {
+			'Round of 16': 1403924400,
+			'Quarter-finals': 1404442800,
+			'Semi-finals': 1404788400,
+			'Third Place': 1405134000,
+			'Final': 1405220400
+		},
 		stats: {
 			totalGoals: 0,
 			totalMatches: 0,
@@ -41,7 +82,7 @@ window.WC = {
 		apiUrl: 'http://worldcup.kimonolabs.com/api',
 		apiKey: '9144470129c2788e93b377ffa8faa3ad'
 	},
-	columnSize: 'col-xs-12 col-sm-6 col-md-4 col-lg-3',
+	columnSize: 'col-xs-12 col-sm-6 col-md-3 col-lg-3',
 
 	init: function () {
 		var that = this;
@@ -138,6 +179,18 @@ window.WC = {
 		return matches;
 	},
 
+	getSecRoundMatches: function () {
+		var matches = _.filter(WC.data.matches, function (d) {
+			return d.group === null;
+		});
+
+		matches = _(matches).sortBy(function(match) {
+			return match.startTime;
+		});
+
+		return matches;
+	},
+
 	getPlayer: function (id) {
 		var players = _.filter(WC.data.players, function (d) {
 			return d.id === id;
@@ -194,8 +247,33 @@ window.WC = {
 		}
 
 		return {
-			date: pad(convertdLocalTime.getDate()) + '/' + pad(convertdLocalTime.getMonth() + 1),
-			time: pad(convertdLocalTime.getHours()) + ':' + pad(convertdLocalTime.getMinutes())
+			date: pad(convertdLocalTime.getMonth() + 1) + '/' + pad(convertdLocalTime.getDate()),
+			time: pad(convertdLocalTime.getHours()) + ':' + pad(convertdLocalTime.getMinutes()),
+			timestamp: Math.round(convertdLocalTime.getTime() / 1000)
 		};
+	},
+
+	cleanUp: function () {
+		var that = this;
+
+		//console.log('cleanUp', route);
+
+		this.$el.fadeOut(500, function () {
+			that.$el.html('').show();
+			$('html, body').animate({ scrollTop: 0 });
+
+			_.each(WC.collections, function (d, i) {
+				d.remove();
+				delete WC.collections[i];
+			});
+
+			_.each(WC.views, function (d, i) {
+				d.remove();
+				delete WC.views[i];
+			});
+
+			Backbone.trigger('cleaned');
+		});
+
 	}
 };

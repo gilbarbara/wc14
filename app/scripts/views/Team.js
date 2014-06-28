@@ -21,6 +21,12 @@ WC.Views = WC.Views || { };
 			this.$el.html(this.template(this.model.toJSON()));
 
 			return this;
+		},
+
+		remove: function () {
+			this.$el.removeData().unbind();
+
+			Backbone.View.prototype.remove.call(this);
 		}
 
 	});

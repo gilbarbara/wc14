@@ -5,7 +5,6 @@
 	"disallowMixedSpacesAndTabs": true,
 	"disallowMultipleLineBreaks": true,
 	"disallowMultipleLineStrings": true,
-	"disallowQuotedKeysInObjects": "allButReserved",
 	"disallowSpaceAfterObjectKeys": true,
 	"disallowSpaceAfterPrefixUnaryOperators": ["++", "--", "+", "-", "~", "!"],
 	"disallowSpaceBeforePostfixUnaryOperators": ["++", "--"],

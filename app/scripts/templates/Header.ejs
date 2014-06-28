@@ -17,12 +17,14 @@
 				<li class="<%= (Backbone.history.fragment === 'stats' ? 'active' : '') %>">
 					<a href="/#stats" data-nav="1">Stats</a>
 				</li>
-				<!--<li class="<%= (Backbone.history.fragment === 'teams' ? 'active' : '') %>">
-					<a href="/#teams" data-nav="1">Teams</a>
+				<li class="<%= (Backbone.history.fragment === 'group' ? 'active' : '') %>">
+					<a href="/#group" data-nav="1">Group Stage</a>
 				</li>
-				<li>
-					<a href="/#matches" data-nav="1">Matches</a>
+				<li class="<%= (Backbone.history.fragment === 'second-stage' ? 'active' : '') %>">
+					<a href="/#second-stage" data-nav="1">Second Stage</a>
 				</li>
+				<!--
+
 				<li>
 					<a href="/#players" data-nav="1">Players</a>
 				</li>

@@ -10,8 +10,9 @@ $brand-senary: #05349E;
 
 $link-color: #798285;
 
-$screen-sm: 640px !default;
-$grid-float-breakpoint: 769px;
+$screen-sm: 768px !default;
+
+$grid-float-breakpoint: 641px;
 
 $headings-font-weight: 700 !default;
 
@@ -130,15 +131,17 @@ footer {
 	text-align: center;
 }
 
+.team {
+	img {
+		width: 75px;
+	}
+}
+
 .team.dead {
 	.team-name,
 	.team-info {
 		color: red;
 	}
-}
-
-.team-name {
-	min-height: 68px;
 }
 
 .team-info {
@@ -164,7 +167,7 @@ footer {
 	text-align: left;
 
 	> div {
-		font-size: 24px;
+		font-size: 22px;
 		padding-left: 15px;
 		padding-right: 0;
 
@@ -193,7 +196,7 @@ footer {
 .match-game {
 	border-top: 1px solid $border-color;
 	color: $text-muted;
-	font-size: 14px;
+	font-size: 16px;
 	min-height: 50px;
 	padding: ($grid-gutter-width / 6) 0;
 
@@ -216,11 +219,16 @@ footer {
 			background-size: 24px;
 			padding: 0 ($grid-gutter-width) 0 ($grid-gutter-width / 6) ;
 			text-align: right;
+
+			> div {
+				@include truncate();
+			}
 		}
 
 		&.center {
 			padding: 0;
 			text-align: center;
+			font-size: 14px;
 		}
 
 		&.right {
@@ -230,15 +238,17 @@ footer {
 			background-size: 24px;
 			padding: 0 ($grid-gutter-width / 6) 0 ($grid-gutter-width);
 			text-align: left;
+
+			> div {
+				@include truncate();
+			}
 		}
 
-		&.venue {
-			padding-left: 0;
-			text-align: left;
-		}
-
+		&.venue,
 		&.time {
-			padding-right: 0;
+			font-size: 15px;
+			min-height: 0;
+			text-align: center;
 		}
 
 		.goals {
@@ -352,6 +362,14 @@ footer {
 	}
 }
 
+.matches {
+	h1 {
+		margin-bottom: $grid-gutter-width;
+		margin-top: ($grid-gutter-width / 2);
+		text-align: center;
+	}
+}
+
 .match {
 	padding: ($grid-gutter-width / 3);
 	text-align: left;
@@ -371,8 +389,18 @@ footer {
 
 		& + div {
 			margin-left: 74px;
-			width: 100%;
+
+			h4,
+			h5 {
+				margin-bottom: 0;
+				margin-top: 10px;
+				@include truncate();
+			}
 		}
+	}
+
+	.match-game {
+		font-size: 14px;
 	}
 }
 
@@ -391,22 +419,42 @@ svg.icon {
 	vertical-align: baseline;
 }
 
-@media (max-width: 768px) {
+@media (min-width: 600px) {
+	.match {
+		.match-game {
+			font-size: 18px;
+		}
+	}
+}
+
+@media (min-width: 769px) {
 	.team {
 		img {
-			width: 75px;
+			width: 150px;
 		}
 	}
 }
 
 @media (max-width: 1200px) {
-	.match-game {
-		font-size: 13px;
+	.container {
+		width: 100%;
+	}
+
+
+}
+
+@media (min-width: 992px) {
+
+	.team-name {
+		min-height: 68px;
 	}
 }
 
 @media (min-width: 1200px) {
-	.match-game {
-		font-size: 12px;
+
+	.match {
+		.match-game {
+			font-size: 20px;
+		}
 	}
 }

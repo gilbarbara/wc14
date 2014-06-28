@@ -54,7 +54,7 @@
 </div>
 
 <div class="row">
-	<div class="col-xs-12 col-sm-4">
+	<div class="col-xs-12 col-sm-6 col-md-4">
 		<h2>Top Teams</h2>
 		<% WC.data.topTeams = _.sortBy(WC.data.teams, function(o) { return -(o.goalsFor - o.goalsAgainst); }); %>
 		<% _.each(WC.data.topTeams, function (d, i) { %>
@@ -70,7 +70,7 @@
 		<% }); %>
 	</div>
 
-	<div class="col-xs-12 col-sm-4">
+	<div class="col-xs-12 col-sm-6 col-md-4">
 		<h2>Top Players</h2>
 		<% _.each(WC.data.players, function (d, i) { %>
 		<% if (i < 12) { %>
@@ -85,9 +85,10 @@
 		<% }); %>
 	</div>
 
-	<div class="col-xs-12 col-sm-4">
-		<h2>Goals per venue</h2>
+	<div class="col-xs-12 col-sm-6 col-md-4">
+		<h2>Goals/Venue</h2>
 		<% _.each(WC.data.stats.totalPerVenueSorted, function (d) { %>
+		<% venue = d.split(' - ')%>
 		<div class="match clearfix">
 			<div class="stats-number">
 				<div>
@@ -95,7 +96,8 @@
 				</div>
 			</div>
 			<div>
-				<h5><%= d %></h5>
+				<h4><%= venue[0] %></h4>
+				<h5><%= venue[1] %></h5>
 			</div>
 		</div>
 		<% }); %>

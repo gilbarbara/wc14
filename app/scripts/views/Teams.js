@@ -52,6 +52,20 @@ WC.Views = WC.Views || { };
 				.siblings().removeClass('btn-primary').addClass('btn-default');
 
 			this.collection.changeSort($this.data('sort'));
+		},
+
+		remove: function () {
+			this.removeViews();
+
+			this.undelegateEvents();
+
+			this.$el.removeData().unbind();
+
+			Backbone.View.prototype.remove.call(this);
+		},
+
+		removeViews: function () {
+			this.trigger('cleanup');
 		}
 
 	});

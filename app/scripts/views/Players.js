@@ -40,6 +40,20 @@ WC.Views = WC.Views || { };
 			}
 
 			this.$el.find('>.items').append(playerBox.render().el);
+		},
+
+		remove: function () {
+			this.removeViews();
+
+			this.undelegateEvents();
+
+			this.$el.removeData().unbind();
+
+			Backbone.View.prototype.remove.call(this);
+		},
+
+		removeViews: function () {
+			this.trigger('cleanup');
 		}
 
 	});

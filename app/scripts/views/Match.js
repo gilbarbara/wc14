@@ -9,7 +9,10 @@ WC.Views = WC.Views || { };
 
 		tagName: 'div',
 
-		className: 'col-xs-12 col-sm-6 col-md-4 col-lg-4',
+		className: function () {
+			var index = this.model.collection.models.indexOf(this.model);
+			return (index % 2 === 0 ? 'col-xs-12 col-sm-6 col-md-5' : 'col-xs-12 col-sm-6 col-md-5 col-md-offset-2');
+		},
 
 		events: { },
 
@@ -21,6 +24,12 @@ WC.Views = WC.Views || { };
 			this.$el.html(this.template(this.model.toJSON()));
 
 			return this;
+		},
+
+		remove: function () {
+			this.$el.removeData().unbind();
+
+			Backbone.View.prototype.remove.call(this);
 		}
 
 	});

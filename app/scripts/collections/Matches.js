@@ -9,32 +9,6 @@ WC.Collections = WC.Collections || {};
 
 		url: 'http://worldcup.kimonolabs.com/api/matches?apikey=9144470129c2788e93b377ffa8faa3ad',
 
-		initialize: function () {
-			this.type = 'group';
-		},
-
-		comparator: function (model) {
-			return [model.get('group'), model.get('startTime')];
-		},
-
-		strategies: {
-			goalsFor: function (model) {
-				return -(model.get('goalsFor'));
-			},
-
-			name: function (model) {
-				return model.get('name');
-			},
-
-			group: function (model) {
-				return [model.get('group'), model.get('groupRank')];
-			}
-		},
-
-		changeSort: function (sortProperty) {
-			this.type = sortProperty;
-			this.comparator = this.strategies[sortProperty];
-			this.sort();
-		}
+		initialize: function () {}
 	});
 })();
