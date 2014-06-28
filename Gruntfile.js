@@ -321,35 +321,33 @@ module.exports = function (grunt) {
 		grunt.file.write('.tmp/scripts/templates.js', 'this.JST = this.JST || {};');
 	});
 
-	grunt.registerTask('serve', function (target) {
-		if (target === 'dist') {
-			return grunt.task.run(['build', 'open:server', 'connect:dist:keepalive']);
-		}
+	grunt.registerTask('serve', [
+		'clean:server',
+		'jshint',
+		'jscs',
+		'createDefaultTemplate',
+		'jst',
+		'copy:server',
+		'compass:server',
+		'connect:livereload',
+		'open:server',
+		'watch'
+	]);
 
-		if (target === 'test') {
-			return grunt.task.run([
-				'clean:server',
-				'createDefaultTemplate',
-				'jst',
-				'compass:server',
-				'connect:test',
-				'open:test',
-				'watch:livereload'
-			]);
-		}
-
+	grunt.registerTask('serve:test', function () {
 		grunt.task.run([
 			'clean:server',
-			'jshint',
-			'jscs',
 			'createDefaultTemplate',
 			'jst',
-			'copy:server',
 			'compass:server',
-			'connect:livereload',
-			'open:server',
-			'watch'
+			'connect:test',
+			'open:test',
+			'watch:livereload'
 		]);
+	});
+
+	grunt.registerTask('serve:dist', function () {
+		grunt.task.run(['build', 'open:server', 'connect:dist:keepalive']);
 	});
 
 	grunt.registerTask('watch:test', function () {

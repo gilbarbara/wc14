@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Mocha Spec Runner</title>
     <link rel="stylesheet" href="bower_components/mocha/mocha.css">
+	<script src="/modernizr/modernizr.js"></script>
 </head>
 <body>
     <div id="mocha"></div>
@@ -31,14 +32,14 @@
 	<script src="scripts/routes/Router.js"></script>
 
     <!-- include source files here... -->
-<script src="scripts/views/Players.js"></script>
-<script src="scripts/views/Player.js"></script>
-<script src="scripts/collections/Players.js"></script>
-<script src="scripts/models/Player.js"></script>
-<script src="scripts/views/Matches.js"></script>
-<script src="scripts/views/Match.js"></script>
-<script src="scripts/collections/Matches.js"></script>
-<script src="scripts/models/Match.js"></script>
+	<script src="scripts/views/Players.js"></script>
+	<script src="scripts/views/Player.js"></script>
+	<script src="scripts/collections/Players.js"></script>
+	<script src="scripts/models/Player.js"></script>
+	<script src="scripts/views/Matches.js"></script>
+	<script src="scripts/views/Match.js"></script>
+	<script src="scripts/collections/Matches.js"></script>
+	<script src="scripts/models/Match.js"></script>
 	<script src="scripts/views/Header.js"></script>
 
 	<script src="scripts/models/Team.js"></script>
@@ -47,24 +48,30 @@
 	<script src="scripts/views/Teams.js"></script>
 
 
-    <script src="test/views/Stats.js"></script>
+    <script src="scripts/views/Stats.js"></script>
     <!-- include spec files here... -->
+	<script src="spec/routers/Router.spec.js"></script>
+	<script src="spec/views/Header.spec.js"></script>
+
     <script src="spec/views/Players.spec.js"></script>
     <script src="spec/views/Player.spec.js"></script>
     <script src="spec/collections/Players.spec.js"></script>
     <script src="spec/models/Player.spec.js"></script>
+
     <script src="spec/views/Matches.spec.js"></script>
     <script src="spec/views/Match.spec.js"></script>
     <script src="spec/collections/Matches.spec.js"></script>
     <script src="spec/models/Match.spec.js"></script>
+
+
     <script src="spec/models/Team.spec.js"></script>
 	<script src="spec/collections/Teams.spec.js"></script>
 	<script src="spec/views/Team.spec.js"></script>
 	<script src="spec/views/Teams.spec.js"></script>
 
-	<script src="spec/views/Header.spec.js"></script>
 
-    <script src="spec/routers/Router.spec.js"></script>
+
+
 
     <script>mocha.run()</script>
 </body>

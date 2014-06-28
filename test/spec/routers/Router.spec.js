@@ -4,11 +4,11 @@
 describe('Router Router', function () {
 
     beforeEach(function () {
-        this.RouterRouter = new WC.Routers.Router();
+        //this.RouterRouter = new WC.Routers.Router();
     });
 
-    it('index route', function(){
-
-    });
+/*    it('Router has routes', function () {
+		expect(this.RouterRouter.routes).to.be.an('object');
+    });*/
 
 });

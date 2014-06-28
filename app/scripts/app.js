@@ -9,6 +9,8 @@ window.WC = {
 	models: { },
 	collections: { },
 	views: { },
+
+	$el: $('#content'),
 	data: {
 		teams: [],
 		matches: [],
