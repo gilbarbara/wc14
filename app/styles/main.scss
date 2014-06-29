@@ -1,6 +1,5 @@
 @import 'compass/css3';
 
-$icon-font-path: "/styles/fonts/";
 $brand-primary: #7FC31C;
 $brand-secondary: #B5DC10;
 $brand-tertiary: #EE3A23;
@@ -15,6 +14,8 @@ $screen-sm: 768px !default;
 $grid-float-breakpoint: 641px;
 
 $headings-font-weight: 700 !default;
+
+$icon-font-path: "/styles/fonts/";
 
 @import '_bootstrap';
 
@@ -341,27 +342,39 @@ footer {
 	}
 }
 
-.player {
-	padding: ($grid-gutter-width / 3);
-	text-align: left;
 
-	img {
-		border: 1px solid $border-color;
-		float: left;
-		@include border-radius(50%);
-		width: 64px;
-	}
+.stats-view {
+	.player,
+	.team {
+		padding: ($grid-gutter-width / 3);
+		text-align: left;
 
-	> div {
-		margin-left: 74px;
-		width: 100%;
-
-		h5 {
-			margin-top: ($grid-gutter-width / 6);
+		img {
+			border: 1px solid $border-color;
+			float: left;
+			@include border-radius(50%);
+			width: 64px;
 		}
 
-		h3 {
-			margin: 0;
+		> div {
+			margin-left: 74px;
+
+			h5 {
+				margin-top: ($grid-gutter-width / 6);
+			}
+
+			h3 {
+				margin: 0;
+			}
+		}
+	}
+
+	.team-goals {
+		margin: 0;
+
+		> div {
+			padding: 0;
+			text-align: left;
 		}
 	}
 }

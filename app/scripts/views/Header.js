@@ -31,8 +31,9 @@ WC.Views = WC.Views || { };
 				$this.parent().addClass('active')
 					.siblings().removeClass('active');
 
-				$('.navbar-toggle').trigger('click');
-
+				if ($('.navbar-collapse').hasClass('in')) {
+					$('.navbar-toggle').trigger('click');
+				}
 			}
 			else {
 				$('.navbar-nav')

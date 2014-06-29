@@ -1,107 +1,121 @@
-<h1>Stats</h1>
-<div class="row">
-	<div class="col-xs-12 col-sm-6 col-md-3">
-		<div class="stats clearfix">
-			<div class="stats-number">
-				<div>
-					<div><svg class="icon whistle"><use xlink:href="#whistle"></use></svg></div>
+<div class="stats-view">
+	<h1>Stats</h1>
+	<div class="row">
+		<div class="col-xs-12 col-sm-6 col-md-3">
+			<div class="stats clearfix">
+				<div class="stats-number">
+					<div>
+						<div><svg class="icon whistle"><use xlink:href="#whistle"></use></svg></div>
+					</div>
+				</div>
+				<div class="stats-caption">
+					<div><%= WC.data.stats.totalMatches %></div>
+					Total Matches</div>
+			</div>
+		</div>
+		<div class="col-xs-12 col-sm-6 col-md-3">
+			<div class="stats clearfix">
+				<div class="stats-number">
+					<div>
+						<div><svg class="icon"><use xlink:href="#ball"></use></svg></div>
+					</div>
+				</div>
+				<div class="stats-caption">
+					<div><%= WC.data.stats.totalGoals %></div>
+					Total Goals
 				</div>
 			</div>
-			<div class="stats-caption">
-				<div><%= WC.data.stats.totalMatches %></div>
-				Total Matches</div>
 		</div>
-	</div>
-	<div class="col-xs-12 col-sm-6 col-md-3">
-		<div class="stats clearfix">
-			<div class="stats-number">
-				<div>
-					<div><svg class="icon"><use xlink:href="#ball"></use></svg></div>
+		<div class="col-xs-12 col-sm-6 col-md-3">
+			<div class="stats clearfix">
+				<div class="stats-number">
+					<div>
+						<div><svg class="icon"><use xlink:href="#arrow-up"></use></svg></div>
+					</div>
+				</div>
+				<div class="stats-caption">
+					<div><%= WC.data.stats.goalsPerGame %></div>
+					Goals Per Match
 				</div>
 			</div>
-			<div class="stats-caption">
-				<div><%= WC.data.stats.totalGoals %></div>
-				Total Goals
-			</div>
 		</div>
-	</div>
-	<div class="col-xs-12 col-sm-6 col-md-3">
-		<div class="stats clearfix">
-			<div class="stats-number">
-				<div>
-					<div><svg class="icon"><use xlink:href="#arrow-up"></use></svg></div>
+		<div class="col-xs-12 col-sm-6 col-md-3">
+			<div class="stats clearfix">
+				<div class="stats-number">
+					<div>
+						<div><svg class="icon"><use xlink:href="#smile-sad"></use></svg></div>
+					</div>
+				</div>
+				<div class="stats-caption">
+					<div><%= WC.data.stats.totalDraws %></div>
+					Draws
 				</div>
 			</div>
-			<div class="stats-caption">
-				<div><%= WC.data.stats.goalsPerGame %></div>
-				Goals Per Match
-			</div>
 		</div>
-	</div>
-	<div class="col-xs-12 col-sm-6 col-md-3">
-		<div class="stats clearfix">
-			<div class="stats-number">
-				<div>
-					<div><svg class="icon"><use xlink:href="#smile-sad"></use></svg></div>
-				</div>
-			</div>
-			<div class="stats-caption">
-				<div><%= WC.data.stats.totalDraws %></div>
-				Draws
-			</div>
-		</div>
-	</div>
-</div>
-
-<div class="row">
-	<div class="col-xs-12 col-sm-6 col-md-4">
-		<h2>Top Teams</h2>
-		<% WC.data.topTeams = _.sortBy(WC.data.teams, function(o) { return -(o.goalsFor - o.goalsAgainst); }); %>
-		<% _.each(WC.data.topTeams, function (d, i) { %>
-		<% if (i < 12) { %>
-		<div class="player clearfix">
-			<img src="<%= d.logo %>"/>
-			<div>
-				<h5><%= d.name %></h5>
-				<h3><%= d.goalsDiff %> Goals</h3>
-			</div>
-		</div>
-		<% } %>
-		<% }); %>
 	</div>
 
-	<div class="col-xs-12 col-sm-6 col-md-4">
-		<h2>Top Players</h2>
-		<% _.each(WC.data.players, function (d, i) { %>
-		<% if (i < 12) { %>
-		<div class="player clearfix">
-			<img src="<%= d.image %>"/>
-			<div>
-				<h5><%= d.nickname %></h5>
-				<h3><%= d.goals %> Goals</h3>
-			</div>
-		</div>
-		<% } %>
-		<% }); %>
-	</div>
-
-	<div class="col-xs-12 col-sm-6 col-md-4">
-		<h2>Goals/Venue</h2>
-		<% _.each(WC.data.stats.totalPerVenueSorted, function (d) { %>
-		<% venue = d.split(' - ')%>
-		<div class="match clearfix">
-			<div class="stats-number">
+	<div class="row">
+		<div class="col-xs-12 col-sm-6 col-md-4">
+			<h2>Top Teams</h2>
+			<% WC.data.topTeams = _.sortBy(WC.data.teams, function(o) { return -(o.goalsFor - o.goalsAgainst); }); %>
+			<% _.each(WC.data.topTeams, function (d, i) { %>
+			<% if (i < 12) { %>
+			<div class="team clearfix">
+				<img src="<%= d.logo %>"/>
 				<div>
-					<div><%= (WC.data.stats.totalPerVenue[d].goals / WC.data.stats.totalPerVenue[d].matches).toFixed(2) %></div>
+					<h5><%= d.name %></h5>
+					<div class="team-goals row">
+						<div class="col-xs-4 col-sm-3">
+							<svg class="icon"><use xlink:href="#goals-diff"></use></svg> <%= d.goalsDiff %>
+						</div>
+
+						<div class="col-xs-4 col-sm-3">
+							<svg class="icon"><use xlink:href="#goals-for"></use></svg> <%= d.goalsFor %>
+						</div>
+
+						<div class="col-xs-4 col-sm-3">
+							<svg class="icon"><use xlink:href="#goals-against"></use></svg> <%= d.goalsAgainst %>
+						</div>
+					</div>
 				</div>
 			</div>
-			<div>
-				<h4><%= venue[0] %></h4>
-				<h5><%= venue[1] %></h5>
-				<span class="label-gray label"><%= WC.data.stats.totalPerVenue[d].matches %> Matches</span>&nbsp;&nbsp;
-				<span class="label-gray label"><%= WC.data.stats.totalPerVenue[d].goals %> Goals</span>
-			</div>
+			<% } %>
+			<% }); %>
 		</div>
-		<% }); %>
+
+		<div class="col-xs-12 col-sm-6 col-md-4">
+			<h2>Top Players</h2>
+			<% _.each(WC.data.players, function (d, i) { %>
+			<% if (i < 12) { %>
+			<div class="player clearfix">
+				<img src="<%= d.image %>"/>
+				<div>
+					<h5><%= d.nickname %></h5>
+					<h3><%= d.goals %> Goals</h3>
+				</div>
+			</div>
+			<% } %>
+			<% }); %>
+		</div>
+
+		<div class="col-xs-12 col-sm-6 col-md-4">
+			<h2>Goals/Venue</h2>
+			<% _.each(WC.data.stats.totalPerVenueSorted, function (d) { %>
+			<% venue = d.split(' - ')%>
+			<div class="match clearfix">
+				<div class="stats-number">
+					<div>
+						<div><%= (WC.data.stats.totalPerVenue[d].goals / WC.data.stats.totalPerVenue[d].matches).toFixed(2) %></div>
+					</div>
+				</div>
+				<div>
+					<h4><%= venue[0] %></h4>
+					<h5><%= venue[1] %></h5>
+					<span class="label-gray label"><%= WC.data.stats.totalPerVenue[d].matches %> Matches</span>&nbsp;&nbsp;
+					<span class="label-gray label"><%= WC.data.stats.totalPerVenue[d].goals %> Goals</span>
+				</div>
+			</div>
+			<% }); %>
+		</div>
 	</div>
 </div>

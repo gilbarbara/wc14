@@ -7,9 +7,9 @@
     "underscore": "~1.6",
     "backbone": "~1",
     "modernizr": "~2",
-    "d3": "~3.4",
-	"backbone.paginator": "~2",
-	"underscore.string": "~2.3",
+    "d3": "~3",
+    "backbone.paginator": "~2",
+    "underscore.string": "~2",
     "jquery.i18n": "https://github.com/wikimedia/jquery.i18n.git#~1.0.2",
     "CLDRPluralRuleParser": "https://github.com/santhoshtr/CLDRPluralRuleParser.git"
   },
