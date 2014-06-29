@@ -5,7 +5,7 @@ WC.Routers = WC.Routers || { };
 
 	WC.Routers.Router = Backbone.Router.extend({
 		routes: {
-			'': 'index',
+			'': 'stats',
 			group: 'group',
 			'second-stage': 'secondStage',
 			players: 'players',

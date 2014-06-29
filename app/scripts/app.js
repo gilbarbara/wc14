@@ -134,9 +134,10 @@ window.WC = {
 						}
 
 						if (!that.data.stats.totalPerVenue[that.data.venues[d.venue]]) {
-							that.data.stats.totalPerVenue[that.data.venues[d.venue]] = 0;
+							that.data.stats.totalPerVenue[that.data.venues[d.venue]] = { matches: 0, goals: 0 };
 						}
-						that.data.stats.totalPerVenue[that.data.venues[d.venue]] += (d.homeScore + d.awayScore);
+						that.data.stats.totalPerVenue[that.data.venues[d.venue]].goals += (d.homeScore + d.awayScore);
+						that.data.stats.totalPerVenue[that.data.venues[d.venue]].matches++;
 
 						that.data.stats.totalMatches++;
 					}
@@ -146,7 +147,7 @@ window.WC = {
 
 				that.data.stats.goalsPerGame = parseFloat((that.data.stats.totalGoals / that.data.stats.totalMatches).toFixed(2));
 				that.data.stats.totalPerVenueSorted = Object.keys(that.data.stats.totalPerVenue).sort(function(a,b) {
-					return that.data.stats.totalPerVenue[b] - that.data.stats.totalPerVenue[a];
+					return that.data.stats.totalPerVenue[b].goals - that.data.stats.totalPerVenue[a].goals;
 				});
 
 				that.ready.resolve();

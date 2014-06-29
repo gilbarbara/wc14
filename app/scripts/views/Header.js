@@ -27,12 +27,17 @@ WC.Views = WC.Views || { };
 		navigate: function (e) {
 			var $this = $(e.target);
 			if ($this.parents('.navbar-nav').size()) {
+
 				$this.parent().addClass('active')
 					.siblings().removeClass('active');
+
+				$('.navbar-toggle').trigger('click');
+
 			}
 			else {
-				$('.navbar-nav li').find('a[href="/#stats"]').trigger('click');
-				return false;
+				$('.navbar-nav')
+					.find('li').removeClass('active').end()
+					.find('a[href="/#stats"]').parent().addClass('active');
 			}
 		}
 	});

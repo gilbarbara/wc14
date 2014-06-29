@@ -23,7 +23,7 @@
     "grunt-open": "~0.2",
     "grunt-rev": "~0.1",
     "grunt-shell": "^0.7",
-    "grunt-usemin": "~2.2",
+    "grunt-usemin": "~2.3",
     "jshint-stylish": "~0.2",
     "load-grunt-tasks": "~0.6",
     "time-grunt": "~0.3"

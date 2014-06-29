@@ -14,7 +14,7 @@
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse" id="navbar-collapse-1" role="navigation">
 			<ul class="nav navbar-nav">
-				<li class="<%= (Backbone.history.fragment === 'stats' ? 'active' : '') %>">
+				<li class="<%= (Backbone.history.fragment === 'stats' || Backbone.history.fragment === '' ? 'active' : '') %>">
 					<a href="/#stats" data-nav="1">Stats</a>
 				</li>
 				<li class="<%= (Backbone.history.fragment === 'group' ? 'active' : '') %>">

@@ -92,12 +92,14 @@
 		<div class="match clearfix">
 			<div class="stats-number">
 				<div>
-					<div><%= WC.data.stats.totalPerVenue[d] %></div>
+					<div><%= (WC.data.stats.totalPerVenue[d].goals / WC.data.stats.totalPerVenue[d].matches).toFixed(2) %></div>
 				</div>
 			</div>
 			<div>
 				<h4><%= venue[0] %></h4>
 				<h5><%= venue[1] %></h5>
+				<span class="label-gray label"><%= WC.data.stats.totalPerVenue[d].matches %> Matches</span>&nbsp;&nbsp;
+				<span class="label-gray label"><%= WC.data.stats.totalPerVenue[d].goals %> Goals</span>
 			</div>
 		</div>
 		<% }); %>

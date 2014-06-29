@@ -67,11 +67,8 @@ module.exports = function (grunt) {
 			},
 			jscs: {
 				files: [
-					'<%= yeoman.app %>/scripts/*.js',
-					'<%= yeoman.app %>/scripts/collections/*.js',
-					'<%= yeoman.app %>/scripts/models/*.js',
-					'<%= yeoman.app %>/scripts/routes/*.js',
-					'<%= yeoman.app %>/scripts/views/*.js'
+					'<%= yeoman.app %>/scripts/{,*/}*.js',
+					'!<%= yeoman.app %>/scripts/vendor/*'
 				]
 			}
 		},

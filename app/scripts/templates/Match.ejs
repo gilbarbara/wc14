@@ -5,9 +5,9 @@
 		<div class="col-xs-5 left" style="background-image:url('<%= WC.getFlag(homeTeamId) %>');"><%= homeScore > awayScore ? '<strong>' : '' %><%= WC.getTeam(homeTeamId).name %><%= homeScore > awayScore ? '</strong>' : '' %></div>
 		<div class="col-xs-2 center">
 			<% if(status !== 'Pre-game') { %>
-			<div class="goals"><%= homeScore %> : <%= awayScore %></div>
+			<%= homeScore %> : <%= awayScore %>
 			<% } else { %>
-			<%= time.date %><br><%= time.time %>
+			vs
 			<% } %>
 		</div>
 		<div class="col-xs-5 right" style="background-image:url('<%= WC.getFlag(awayTeamId) %>');"><%= awayScore > homeScore ? '<strong>' : '' %><%= WC.getTeam(awayTeamId).name %><%= awayScore > homeScore ? '</strong>' : '' %></div>
