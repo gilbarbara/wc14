@@ -214,7 +214,7 @@ footer {
 	}
 
 	> div {
-		min-height: 36px;
+		min-height: 28px;
 
 		&.left {
 			background-image: url(http://www.geoips.com/assets/img/flag/32/nl.png);
@@ -230,9 +230,10 @@ footer {
 		}
 
 		&.center {
+			font-size: 20px;
+			line-height: 1.2;
 			padding: 0;
 			text-align: center;
-			font-size: 14px;
 		}
 
 		&.right {
@@ -252,6 +253,13 @@ footer {
 		&.time {
 			font-size: 15px;
 			line-height: 1.5;
+			min-height: 0;
+			text-align: center;
+		}
+
+		&.penalties {
+			color: $brand-tertiary;
+			font-size: 16px;
 			min-height: 0;
 			text-align: center;
 		}
@@ -461,10 +469,6 @@ svg.icon {
 	.match {
 		.match-game {
 			line-height: 1.2;
-
-			.center {
-				font-size: 22px;
-			}
 		}
 	}
 

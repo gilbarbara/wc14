@@ -2,7 +2,7 @@
 
 <div class="match">
 	<div class="match-game row <%= status !== 'Pre-game' ? 'final' : '' %>" data-id="<%= id %>">
-		<div class="col-xs-5 left" style="background-image:url('<%= WC.getFlag(homeTeamId) %>');"><%= homeScore > awayScore ? '<strong>' : '' %><%= WC.getTeam(homeTeamId).name %><%= homeScore > awayScore ? '</strong>' : '' %></div>
+		<div class="col-xs-5 left" style="background-image:url('<%= WC.getFlag(homeTeamId) %>');"><%= (homeScore > awayScore || homePenalties > awayPenalties ? '<strong>' : '') %><%= WC.getTeam(homeTeamId).name %><%= homeScore > awayScore || homePenalties > awayPenalties ? '</strong>' : '' %></div>
 		<div class="col-xs-2 center">
 			<% if(status !== 'Pre-game') { %>
 			<%= homeScore %> : <%= awayScore %>
@@ -10,7 +10,13 @@
 			vs
 			<% } %>
 		</div>
-		<div class="col-xs-5 right" style="background-image:url('<%= WC.getFlag(awayTeamId) %>');"><%= awayScore > homeScore ? '<strong>' : '' %><%= WC.getTeam(awayTeamId).name %><%= awayScore > homeScore ? '</strong>' : '' %></div>
+		<div class="col-xs-5 right" style="background-image:url('<%= WC.getFlag(awayTeamId) %>');"><%= (awayScore > homeScore || awayPenalties > homePenalties ? '<strong>' : '') %><%= WC.getTeam(awayTeamId).name %><%= awayScore > homeScore || awayPenalties > homePenalties ? '</strong>' : '' %></div>
+		<div class="col-xs-12 penalties"><% if (awayPenalties || homePenalties) { %>
+		(<%= homePenalties %> : <%= awayPenalties %>)
+		<% } else { %>
+			&nbsp;
+			<% } %>
+		</div>
 
 		<div class="col-xs-12 venue"><%= WC.data.venues[venue] %></div>
 

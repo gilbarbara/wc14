@@ -125,7 +125,7 @@ window.WC = {
 				_.each(that.data.matches, function (d) {
 
 					if (d.status === 'Final') {
-						if (d.homeScore === d.awayScore) {
+						if (d.homeScore === d.awayScore && !d.homePenalties && !d.awayPenalties) {
 							that.data.stats.totalDraws++;
 						}
 
@@ -134,7 +134,7 @@ window.WC = {
 						}
 
 						if (!that.data.stats.totalPerVenue[that.data.venues[d.venue]]) {
-							that.data.stats.totalPerVenue[that.data.venues[d.venue]] = { matches: 0, goals: 0 };
+							that.data.stats.totalPerVenue[that.data.venues[d.venue]] = { matches: 0, goals: 0, score: 0 };
 						}
 						that.data.stats.totalPerVenue[that.data.venues[d.venue]].goals += (d.homeScore + d.awayScore);
 						that.data.stats.totalPerVenue[that.data.venues[d.venue]].matches++;
@@ -146,8 +146,13 @@ window.WC = {
 				});
 
 				that.data.stats.goalsPerGame = parseFloat((that.data.stats.totalGoals / that.data.stats.totalMatches).toFixed(2));
+
+				_.each(that.data.stats.totalPerVenue, function (e) {
+					e.score = (e.goals / e.matches).toFixed(2);
+				});
+
 				that.data.stats.totalPerVenueSorted = Object.keys(that.data.stats.totalPerVenue).sort(function(a,b) {
-					return that.data.stats.totalPerVenue[b].goals - that.data.stats.totalPerVenue[a].goals;
+					return that.data.stats.totalPerVenue[b].score - that.data.stats.totalPerVenue[a].score;
 				});
 
 				that.ready.resolve();
